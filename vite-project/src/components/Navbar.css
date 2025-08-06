@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Smooth scrolling para los enlaces */
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  z-index: 999;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+  color: white;
+  box-sizing: border-box;
+}
+
+.navbar.scrolled {
+  background: white;
+  color: black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #555;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.navbar.scrolled .hamburger {
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    width: 100vw;
+    left: 0;
+    right: 0;
+  }
+
+  .navbar-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+    z-index: 998;
+    /* Inicialmente oculto - desliza desde la derecha */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .nav-links.open {
+    /* Mostrar el menú con transición suave desde la derecha */
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .nav-links.open a {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.open a:hover {
+    color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    position: relative;
+    color: white;
+    padding: 4px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .navbar.scrolled .hamburger {
+    color: black;
+  }
+
+  /* Cuando el menú está abierto, el hamburger se mantiene visible */
+  .nav-links.open ~ .hamburger {
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .hamburger svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+}
